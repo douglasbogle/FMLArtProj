@@ -9,7 +9,13 @@ ENRICHED_FILE = "./phillips_data/contemporary_lots_enriched.jsonl"
 CLEANED_FILE = "./phillips_data/contemporary_lots_cleaned.jsonl"
 OUTPUT_CSV = "./phillips_data/final_cv_dataset.csv"
 
+# Converted to US currency, website: https://www.xe.com/en-us/currencycharts/?from=HKD&to=USD&view=10Y
+# GBP to USD has been pretty volatile over past 10ish years, 1.3 is a loose average to avoid overcomplicating
+# HKD pretty stable
+# Probably wont encounter Geneva auctions since we are focusing on art but its volatile like GBP so its averaged
 CURRENCY_FIX = {'London': 1.30, 'Hong Kong': 0.13, 'Geneva': 1.10, 'New York': 1.0}
+
+# Inflation numbers from https://www.usinflationcalculator.com/
 CPI_MAP = {
     2014: 1.33, 2015: 1.32, 2016: 1.30, 2017: 1.27, 2018: 1.24,
     2019: 1.22, 2020: 1.21, 2021: 1.15, 2022: 1.06, 2023: 1.03, 2024: 1.0
@@ -55,6 +61,7 @@ def process_data():
                 break
         return c_factor * CPI_MAP.get(row['auction_year'], 1.0)
 
+    # Convert to US dollars then multiply by inflation rate
     df['std_factor'] = df.apply(get_std_factor, axis=1)
 
     # 4. Price & Year Processing

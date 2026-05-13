@@ -18,6 +18,7 @@ IMAGE_DIR.mkdir(exist_ok=True)
 MAX_LOTS = 20000
 CONCURRENT_DOWNLOADS = 10
 
+# Extra checks to ensure we dont get other auction items
 BAD_KEYWORDS = ['watch', 'jewelry', 'handbag', 'wine', 'car', 'sportswear', 'design', 'photographs']
 
 SKIP_LOT_TITLE_KEYWORDS = [
