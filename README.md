@@ -2,7 +2,7 @@
 
 
 # Material Col
-    -  Oil: 0, 
+    - Oil: 0, 
     - Acrylic: 1
     - Otherwise: 2
 # Surface Col
